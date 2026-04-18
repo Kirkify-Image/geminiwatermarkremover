@@ -1,0 +1,16 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gemini star inspired logo - clean and minimal -->
+  <defs>
+    <linearGradient id="gemGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8AB4F8"/>
+      <stop offset="50%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#8AB4F8"/>
+    </linearGradient>
+  </defs>
+  <!-- Outer glow ring -->
+  <circle cx="50" cy="50" r="42" fill="none" stroke="url(#gemGradient)" stroke-width="1.5" opacity="0.6"/>
+  <!-- Main star - 4 points -->
+  <path d="M50 15 L54 42 L82 42 L59 57 L68 85 L50 68 L32 85 L41 57 L18 42 L46 42 Z" fill="url(#gemGradient)"/>
+  <!-- Center highlight -->
+  <circle cx="50" cy="50" r="8" fill="#FFFFFF" opacity="0.9"/>
+</svg>

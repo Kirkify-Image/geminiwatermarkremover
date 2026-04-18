@@ -1,0 +1,27 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Frame focus - isolating clean area -->
+  <defs>
+    <linearGradient id="focusGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8AB4F8"/>
+      <stop offset="50%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#8AB4F8"/>
+    </linearGradient>
+  </defs>
+  <!-- Outer frame - slightly faded -->
+  <rect x="10" y="10" width="80" height="80" rx="8" fill="none" stroke="#8AB4F8" stroke-width="2" opacity="0.4"/>
+  <!-- Inner focus frame -->
+  <rect x="18" y="18" width="64" height="64" rx="6" fill="none" stroke="url(#focusGrad)" stroke-width="3"/>
+  <!-- Corner accents -->
+  <path d="M18 30 V18 H30" fill="none" stroke="url(#focusGrad)" stroke-width="3"/>
+  <path d="M70 18 H82 V30" fill="none" stroke="url(#focusGrad)" stroke-width="3"/>
+  <path d="M82 70 V82 H70" fill="none" stroke="url(#focusGrad)" stroke-width="3"/>
+  <path d="M30 82 V70 H18" fill="none" stroke="url(#focusGrad)" stroke-width="3"/>
+  <!-- Center spark - clean result -->
+  <circle cx="50" cy="50" r="6" fill="#FFFFFF"/>
+  <circle cx="50" cy="50" r="3" fill="#8AB4F8"/>
+  <!-- Radiating lines -->
+  <line x1="50" y1="30" x2="50" y2="22" stroke="#8AB4F8" stroke-width="1.5" opacity="0.6"/>
+  <line x1="70" y1="50" x2="78" y2="50" stroke="#8AB4F8" stroke-width="1.5" opacity="0.6"/>
+  <line x1="50" y1="70" x2="50" y2="78" stroke="#8AB4F8" stroke-width="1.5" opacity="0.6"/>
+  <line x1="30" y1="50" x2="22" y2="50" stroke="#8AB4F8" stroke-width="1.5" opacity="0.6"/>
+</svg>

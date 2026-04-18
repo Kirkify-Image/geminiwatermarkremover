@@ -1,0 +1,20 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Layer removal concept - clean separation -->
+  <defs>
+    <linearGradient id="layerBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4285F4"/>
+      <stop offset="100%" stop-color="#8AB4F8"/>
+    </linearGradient>
+  </defs>
+  <!-- Background layer (watermark area) -->
+  <rect x="15" y="30" width="70" height="40" rx="4" fill="#8AB4F8" opacity="0.3"/>
+  <!-- Middle layer (being removed) -->
+  <rect x="20" y="35" width="60" height="30" rx="3" fill="url(#layerBlue)" opacity="0.6"/>
+  <!-- Top layer (clean result) -->
+  <rect x="25" y="25" width="50" height="50" rx="5" fill="#FFFFFF"/>
+  <!-- Removal indicator - X marks -->
+  <path d="M60 40 L75 55" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+  <path d="M75 40 L60 55" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+  <!-- Clean checkmark on result -->
+  <path d="M40 55 L48 63 L62 45" stroke="#4285F4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>
