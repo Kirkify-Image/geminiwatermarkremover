@@ -34,34 +34,98 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "How to remove Gemini watermark without losing quality?",
+            "name": "How to remove Gemini watermark without losing image quality?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "The best way to remove Gemini watermark without losing quality is to use a Gemini watermark remover designed for Gemini exports. This page uses reverse alpha blending instead of generic AI inpainting, which helps reconstruct the watermark area more accurately."
+              "text": "The safest way to remove Gemini watermark without quality loss is to use a tool built on Reverse Alpha Blending rather than AI inpainting. AI inpainting generates new pixels to fill the watermark region, which can introduce blurring, color shifts, or texture mismatches — especially near fine edges. Reverse Alpha Blending works differently: it inverts the original compositing formula to recover the exact pixel values that existed before the watermark was applied. The result is mathematically reconstructed, not guessed. For best results, always start from the original Gemini export file. Recompressed screenshots or cropped derivatives lose the alpha channel data the algorithm depends on, which reduces reconstruction accuracy."
             }
           },
           {
             "@type": "Question",
-            "name": "Is this a free Gemini watermark remover online?",
+            "name": "Is this gemini watermark remover completely free?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. This is a free Gemini watermark remover online that runs directly in your browser with no forced signup."
+              "text": "Yes. This gemini watermark remover has no subscription, no trial limit, and no forced sign-up. Processing runs entirely in your browser at no cost."
             }
           },
           {
             "@type": "Question",
-            "name": "Can I remove Gemini watermark from image files without uploading them?",
+            "name": "Can I remove the Gemini watermark without uploading image files?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. The processing stays in your browser, so images do not need to be uploaded to a remote server."
+              "text": "Yes. The engine runs inside a Web Worker in your browser. To clean your Gemini images privately, this local-only architecture is the key advantage — your files never leave your device."
             }
           },
           {
             "@type": "Question",
-            "name": "Does this Gemini logo remover also remove the Gemini star logo?",
+            "name": "Does this tool work on the Gemini star overlay?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. The tool is designed for visible Gemini watermark and star-style overlay patterns in supported Gemini exports."
+              "text": "Yes. This gemini watermark remover specifically targets the Gemini star-style mark applied to AI-generated exports. It is most effective on original exports with the full alpha compositing data intact."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is Reverse Alpha Blending and why does this tool use it?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Reverse Alpha Blending is an algebraic inversion of the standard alpha compositing formula. When the Gemini watermark is blended onto an image at a known opacity, this gemini watermark remover solves the blend equation backwards to reconstruct the original pixel values — without inventing texture the way generative AI tools do."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What file formats are supported?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "This tool accepts PNG, JPEG, and WebP files. For the best results, use the original Gemini export rather than a screenshot or recompressed copy."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why does this work better on original exports?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "When you clean an original Gemini export, the alpha channel data is intact. Recompression or screenshotting degrades that data, which limits how accurately the algorithm can solve the blend equation and recover the underlying pixels."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is it safe to remove watermark gemini users find on client work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Since this tool processes files locally, removing a watermark from client visuals using this gemini watermark remover online is safe from a data-privacy standpoint. No image is transmitted to any server."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does this gemini logo remover compare to using Photoshop or a generic AI editor?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A generic editor uses content-aware fill or AI inpainting, which generates new pixels and can introduce blurring or mismatched texture. This gemini logo remover uses Reverse Alpha Blending, which reconstructs rather than invents — producing cleaner edges and more faithful colors in the repaired region."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What should I do if the gemini watermark remover shows \"No Change\"?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A \"No Change\" result usually means the uploaded file does not contain the expected Gemini overlay pattern. Try uploading the original PNG or JPEG export directly from Gemini rather than a screenshot. If the watermark is in a non-standard position or has been partially edited, the gemini watermark remover may not detect it automatically."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does this tool work on mobile browsers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. The processing engine is a pure JavaScript canvas pipeline and runs in modern mobile browsers on iOS Safari and Android Chrome. Processing may be slightly slower on lower-end devices."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where can I find the source code for this gemini watermark remover?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "This gemini watermark remover is built on the open-source @pilio/gemini-watermark-remover library, which is publicly available under an MIT-compatible license. The client-side processing means the full algorithm is also visible in the browser's DevTools."
             }
           }
         ]
