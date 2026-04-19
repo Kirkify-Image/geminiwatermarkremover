@@ -292,7 +292,7 @@ export default function App() {
               Gemini Watermark Remover
             </a>
             <div className="top-links">
-              <a href="#how-it-works">How it works</a>
+              <a href="#how-to-remove">How to Remove</a>
               <a href="#faq">FAQ</a>
             </div>
           </nav>
@@ -451,19 +451,25 @@ export default function App() {
             </div>
           </section>
 
-          {/* HOW IT WORKS */}
-          <section className="content-section" id="how-it-works" aria-labelledby="steps-h2">
-            <span className="section-label">Workflow</span>
-            <h2 id="steps-h2">How to remove Gemini watermark in 3 steps</h2>
-            <div className="steps-grid">
-              {steps.map((s) => (
-                <article key={s.num} className="step-card">
-                  <div className="step-num" aria-hidden="true">{s.num}</div>
-                  <h3>{s.title}</h3>
-                  <p>{s.copy}</p>
-                </article>
-              ))}
-            </div>
+
+          {/* HOW TO REMOVE - 6 STEPS */}
+          <section className="content-section" id="how-to-remove" aria-labelledby="steps-h2">
+            <span className="section-label">How to Remove</span>
+            <h2 id="steps-h2">How to Remove Gemini Watermark — Step by Step</h2>
+            <p>
+              Follow these steps to get the cleanest possible result from this Gemini watermark remover:
+            </p>
+            <ol>
+              <li>Export your image directly from Google Gemini — download the original PNG or WebP file, not a screenshot.</li>
+              <li>Open this Gemini watermark remover in any modern browser on desktop or mobile.</li>
+              <li>Drop the file into the upload area. No account, no upload queue — processing starts immediately.</li>
+              <li>Wait up to two seconds while the Reverse Alpha Blending engine runs locally in your browser.</li>
+              <li>Use the before/after slider to inspect the repaired region at full resolution.</li>
+              <li>Click Download to save the cleaned PNG to your device.</li>
+            </ol>
+            <p>
+              If the tool returns a "No Change" message, the file is likely a recompressed screenshot rather than an original Gemini export. Re-download the image directly from Gemini and try again.
+            </p>
           </section>
 
           {/* WHY IT WORKS */}
@@ -540,21 +546,6 @@ export default function App() {
                   the tool again.
                 </p>
 
-                <h3>How to remove Gemini watermark — step by step</h3>
-                <p>
-                  Follow these steps to get the cleanest possible result from this Gemini watermark remover:
-                </p>
-                <ol>
-                  <li>Export your image directly from Google Gemini — download the original PNG or WebP file, not a screenshot.</li>
-                  <li>Open this Gemini watermark remover in any modern browser on desktop or mobile.</li>
-                  <li>Drop the file into the upload area. No account, no upload queue — processing starts immediately.</li>
-                  <li>Wait up to two seconds while the Reverse Alpha Blending engine runs locally in your browser.</li>
-                  <li>Use the before/after slider to inspect the repaired region at full resolution.</li>
-                  <li>Click Download to save the cleaned PNG to your device.</li>
-                </ol>
-                <p>
-                  If the tool returns a "No Change" message, the file is likely a recompressed screenshot rather than an original Gemini export. Re-download the image directly from Gemini and try again.
-                </p>
               </div>
 
             </div>
