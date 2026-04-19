@@ -6,54 +6,52 @@ import { createWatermarkEngine, removeWatermarkFromImage } from '@pilio/gemini-w
 const seoProseBlocks = [
   `If you are searching for a reliable <strong>gemini watermark remover</strong>, you have landed in the right place. This free tool runs entirely inside your browser, so every pixel of your image stays on your device. No sign-up wall, no upload queue, no subscription. Just drop your file and the <strong>gemini watermark remover</strong> starts working instantly.`,
 
-  `The demand to <strong>remove gemini watermark</strong> has grown steadily alongside Google Gemini's adoption as an AI image tool. Designers, marketers, and researchers routinely export visuals from Gemini and then need a clean version for their decks, websites, and reports. A dedicated <strong>gemini watermark remover online</strong> is the fastest way to reach that goal without sending files to a remote server you don't control.`,
+  `The demand to strip the watermark from your Gemini image has grown steadily alongside Google Gemini's adoption as an AI image tool. Designers, marketers, and researchers routinely export visuals from Gemini and then need a clean version for their decks, websites, and reports. A dedicated <strong>gemini watermark remover</strong> is the fastest way to reach that goal without sending files to a remote server you don't control.`,
 
   `Understanding why a specialized tool outperforms a generic eraser starts with the watermark itself. The Gemini overlay is composited onto the image at a known opacity using an alpha blend operation. Reverse Alpha Blending — the core algorithm in this <strong>gemini watermark remover</strong> — inverts that compositing step mathematically. Instead of guessing what lies beneath the mark, it solves the blend equation directly and recovers the original pixel values with high fidelity. This is why results from a true <strong>gemini watermark remover</strong> look sharper and more natural than outputs from a general-purpose AI fill tool.`,
 
-  `When you <strong>remove gemini watermark from image</strong> assets using this browser-based engine, the entire processing pipeline stays inside a Web Worker on your local machine. The server never sees your image. That commitment to privacy is why so many users choose this <strong>gemini watermark remover online</strong> for client work, unreleased product screenshots, and other sensitive visuals.`,
+  `When you clean your Gemini image using this browser-based engine, the entire processing pipeline stays inside a Web Worker on your local machine. The server never sees your image. That commitment to privacy is why so many users choose this <strong>gemini watermark remover</strong> for client work, unreleased product screenshots, and other sensitive visuals.`,
 
-  `Many people arrive here after searching variations like <strong>gemini logo remover</strong>, <strong>remove gemini logo</strong>, or <strong>remove watermark gemini</strong>. All of those intents point to the same need: stripping the visible Gemini star-style mark cleanly, without damaging the surrounding image. This <strong>gemini watermark remover</strong> handles that exact scenario by targeting the specific compositing pattern Gemini uses rather than applying a broad content-aware fill that can blur fine detail.`,
+  `Client-side processing also makes this <strong>gemini watermark remover</strong> faster than server-dependent alternatives for most modern devices. The browser decodes the image, runs the detection pass, applies Reverse Alpha Blending through a canvas pipeline, and returns a downloadable PNG — all without a round-trip to the cloud. For a standard Gemini export, the whole job typically completes in under two seconds on a mid-range laptop.`,
 
-  `Client-side processing also makes this <strong>gemini watermark remover online</strong> faster than server-dependent alternatives for most modern devices. The browser decodes the image, runs the detection pass, applies Reverse Alpha Blending through a canvas pipeline, and returns a downloadable PNG — all without a round-trip to the cloud. For a standard Gemini export, the whole job typically completes in under two seconds on a mid-range laptop.`,
+  `The method behind this tool matters just as much as the outcome. This <strong>gemini watermark remover</strong> is built on an open-source engine, meaning the restoration logic is publicly inspectable. That transparency is rare. Most tools that claim to remove the Gemini overlay are opaque black boxes. Here, anyone can read the code, understand the algorithm, and verify that no data leaves the device.`,
 
-  `The phrase <strong>gemini remove watermark</strong> describes the action precisely, but the method behind it matters just as much as the outcome. This <strong>gemini watermark remover</strong> is built on an open-source engine, meaning the restoration logic is publicly inspectable. That transparency is rare. Most tools that claim to <strong>remove watermark gemini</strong> users encounter are opaque black boxes. Here, anyone can read the code, understand the algorithm, and verify that no data leaves the device.`,
-
-  `For users who want the step-by-step answer to <strong>how to remove gemini watermark</strong> images cleanly: start with the original Gemini export whenever possible. Recompressed screenshots or cropped derivatives lose the alpha data the algorithm needs, which limits how precisely the tool can <strong>gemini watermark remove</strong> the overlay. Original exports give the engine the best raw material to work with.`,
+  `For users who want to know how to remove the Gemini watermark cleanly: start with the original Gemini export whenever possible. Recompressed screenshots or cropped derivatives lose the alpha data the algorithm needs, which limits how precisely the tool can strip the watermark from your Gemini image. Original exports give the engine the best raw material to work with.`,
 
   `This <strong>gemini watermark remover</strong> produces a full-resolution output in PNG format, preserving every pixel outside the watermark region exactly as it was in the original. The repaired zone uses the Reverse Alpha Blending result rather than AI inpainting, which means there is no hallucinated texture or smeared edge in areas adjacent to the mark. If you compare the before and after using the slider on this page, the boundary between cleaned and untouched regions should appear seamless on well-formed original exports.`,
 
-  `In summary: a purpose-built <strong>gemini watermark remover online</strong> is meaningfully different from a generic editor. It is designed around the specific overlay Gemini produces, processes files locally for privacy, uses a mathematically grounded restoration method, and delivers a clean download without fees or forced accounts. If your goal is to <strong>remove gemini watermark</strong> results accurately and keep your files private, this is the tool to use.`,
+  `In summary: a purpose-built <strong>gemini watermark remover</strong> is meaningfully different from a generic editor. It is designed around the specific overlay Gemini produces, processes files locally for privacy, uses a mathematically grounded restoration method, and delivers a clean download without fees or forced accounts. If your goal is to strip the watermark from your Gemini image accurately and keep your files private, this is the tool to use.`,
 ]
 
 const faqItems = [
   {
     question: 'How to remove Gemini watermark without losing image quality?',
-    answer: 'Use a dedicated gemini watermark remover that applies Reverse Alpha Blending. This approach inverts the original compositing step to recover the underlying pixels mathematically, which preserves fine detail much better than generic AI inpainting or content-aware fill.',
+    answer: 'The safest way to remove Gemini watermark without quality loss is to use a tool built on Reverse Alpha Blending rather than AI inpainting. AI inpainting generates new pixels to fill the watermark region, which can introduce blurring, color shifts, or texture mismatches — especially near fine edges. Reverse Alpha Blending works differently: it inverts the original compositing formula to recover the exact pixel values that existed before the watermark was applied. The result is mathematically reconstructed, not guessed. For best results, always start from the original Gemini export file. Recompressed screenshots or cropped derivatives lose the alpha channel data the algorithm depends on, which reduces reconstruction accuracy.',
     open: true,
   },
   {
-    question: 'Is this gemini watermark remover online completely free?',
-    answer: 'Yes. This gemini watermark remover online has no subscription, no trial limit, and no forced sign-up. Processing runs entirely in your browser at no cost.',
+    question: 'Is this gemini watermark remover completely free?',
+    answer: 'Yes. This gemini watermark remover has no subscription, no trial limit, and no forced sign-up. Processing runs entirely in your browser at no cost.',
   },
   {
-    question: 'Can I remove Gemini watermark from image files without uploading them?',
-    answer: 'Yes. The engine runs inside a Web Worker in your browser. To remove Gemini watermark from image files privately, this local-only architecture is the key advantage — your files never leave your device.',
+    question: 'Can I remove the Gemini watermark without uploading image files?',
+    answer: 'Yes. The engine runs inside a Web Worker in your browser. To clean your Gemini images privately, this local-only architecture is the key advantage — your files never leave your device.',
   },
   {
-    question: 'Does this gemini logo remover work on the Gemini star overlay?',
-    answer: 'Yes. This gemini logo remover specifically targets the Gemini star-style mark applied to AI-generated exports. It is most effective on original exports with the full alpha compositing data intact.',
+    question: 'Does this tool work on the Gemini star overlay?',
+    answer: 'Yes. This gemini watermark remover specifically targets the Gemini star-style mark applied to AI-generated exports. It is most effective on original exports with the full alpha compositing data intact.',
   },
   {
-    question: 'What is Reverse Alpha Blending and why does this gemini watermark remover use it?',
+    question: 'What is Reverse Alpha Blending and why does this tool use it?',
     answer: 'Reverse Alpha Blending is an algebraic inversion of the standard alpha compositing formula. When the Gemini watermark is blended onto an image at a known opacity, this gemini watermark remover solves the blend equation backwards to reconstruct the original pixel values — without inventing texture the way generative AI tools do.',
   },
   {
-    question: 'What file formats does this gemini watermark remove tool accept?',
-    answer: 'The gemini watermark remove tool accepts PNG, JPEG, and WebP files. For the best results, use the original Gemini export rather than a screenshot or recompressed copy.',
+    question: 'What file formats are supported?',
+    answer: 'This tool accepts PNG, JPEG, and WebP files. For the best results, use the original Gemini export rather than a screenshot or recompressed copy.',
   },
   {
-    question: 'Why does gemini remove watermark work better on original exports?',
-    answer: 'When you gemini remove watermark on an original export, the alpha channel data is intact. Recompression or screenshotting degrades that data, which limits how accurately the algorithm can solve the blend equation and recover the underlying pixels.',
+    question: 'Why does this work better on original exports?',
+    answer: 'When you clean an original Gemini export, the alpha channel data is intact. Recompression or screenshotting degrades that data, which limits how accurately the algorithm can solve the blend equation and recover the underlying pixels.',
   },
   {
     question: 'Is it safe to remove watermark gemini users find on client work?',
@@ -520,16 +518,16 @@ export default function App() {
                   Standard image compositing uses the formula: <code>C_out = alpha × C_watermark + (1 − alpha) × C_original</code>.
                   When you use this <strong>gemini watermark remover</strong>, the engine reads the known parameters of the Gemini overlay
                   — its position, size, opacity, and color — and solves the equation for <code>C_original</code>.
-                  This algebraic reversal is what makes the <strong>gemini watermark remove</strong> result look like the untouched image
+                  This algebraic reversal is what makes the cleaned result look like the untouched image
                   rather than an AI's reconstruction of it.
                 </p>
 
                 <h3>Client-side processing explained</h3>
                 <p>
-                  Client-side processing means every instruction runs inside your browser tab. When you <strong>remove watermark gemini</strong>
-                  images with this tool, the JavaScript engine downloads a small Web Worker bundle (under 200 KB), decodes your image
+                  Client-side processing means every instruction runs inside your browser tab. When you use this tool
+                  to clean your Gemini image, the JavaScript engine downloads a small Web Worker bundle (under 200 KB), decodes your image
                   into a canvas buffer, runs the detection and blending pass, then encodes the result back to PNG — all without touching
-                  a remote server. This architecture is why the <strong>gemini watermark remover online</strong> can honestly claim
+                  a remote server. This architecture is why this <strong>gemini watermark remover</strong> can honestly claim
                   zero-upload privacy: there is no network request that carries your pixel data.
                 </p>
 
@@ -537,9 +535,25 @@ export default function App() {
                 <p>
                   To get the most from this <strong>gemini watermark remover</strong>, always start from the raw Gemini export.
                   Avoid images that have been screenshotted, cropped, or re-saved at lower quality, because JPEG compression
-                  introduces artifacts that interfere with the blending math. If the <strong>gemini remove watermark</strong> result
+                  introduces artifacts that interfere with the blending math. If the output
                   shows residual marks, try re-exporting the image directly from Gemini at full resolution before running it through
                   the tool again.
+                </p>
+
+                <h3>How to remove Gemini watermark — step by step</h3>
+                <p>
+                  Follow these steps to get the cleanest possible result from this Gemini watermark remover:
+                </p>
+                <ol>
+                  <li>Export your image directly from Google Gemini — download the original PNG or WebP file, not a screenshot.</li>
+                  <li>Open this Gemini watermark remover in any modern browser on desktop or mobile.</li>
+                  <li>Drop the file into the upload area. No account, no upload queue — processing starts immediately.</li>
+                  <li>Wait up to two seconds while the Reverse Alpha Blending engine runs locally in your browser.</li>
+                  <li>Use the before/after slider to inspect the repaired region at full resolution.</li>
+                  <li>Click Download to save the cleaned PNG to your device.</li>
+                </ol>
+                <p>
+                  If the tool returns a "No Change" message, the file is likely a recompressed screenshot rather than an original Gemini export. Re-download the image directly from Gemini and try again.
                 </p>
               </div>
 
