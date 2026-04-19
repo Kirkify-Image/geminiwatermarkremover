@@ -344,7 +344,7 @@ export default function App() {
             <div className="hero-panel hero-panel-copy">
               <div className="hero-copy">
                 <span className="eyebrow">Free local Gemini cleanup</span>
-                <h1 id="hero-h1">Remove Gemini Watermarks In Seconds</h1>
+                <h1 id="hero-h1">Gemini Watermark Remover — Clean Gemini Exports In Seconds</h1>
                 <p className="hero-sub">
                   Clean Gemini exports directly in your browser. No signup, no cloud upload,
                   and no generic AI fill standing between you and a usable image.
@@ -576,22 +576,6 @@ export default function App() {
             </p>
           </section>
 
-          <section className="content-section" id="faq" aria-labelledby="faq-h2">
-            <span className="section-label">FAQ</span>
-            <h2 id="faq-h2">Frequently asked questions about Gemini watermark removal</h2>
-            <div className="faq-list">
-              {faqItems.map((item) => (
-                <details key={item.question} open={item.open || false}>
-                  <summary>
-                    {item.question}
-                    <span className="faq-arrow" aria-hidden="true">▾</span>
-                  </summary>
-                  <p>{item.answer}</p>
-                </details>
-              ))}
-            </div>
-          </section>
-
           <section className="content-section seo-section" id="seo-article" aria-labelledby="seo-h2">
             <span className="section-label">Deep Dive</span>
             <h2 id="seo-h2">Why a dedicated Gemini watermark remover beats generic tools</h2>
@@ -622,6 +606,22 @@ export default function App() {
                 re-saves because compression artifacts interfere with the blending math. If the output still shows residual marks,
                 re-export the image from Gemini at full resolution before trying again.
               </p>
+            </div>
+          </section>
+
+          <section className="content-section" id="faq" aria-labelledby="faq-h2">
+            <span className="section-label">FAQ</span>
+            <h2 id="faq-h2">Frequently asked questions about Gemini watermark removal</h2>
+            <div className="faq-list">
+              {faqItems.map((item) => (
+                <details key={item.question} open={item.open || false}>
+                  <summary>
+                    {item.question}
+                    <span className="faq-arrow" aria-hidden="true">▾</span>
+                  </summary>
+                  <p>{item.answer}</p>
+                </details>
+              ))}
             </div>
           </section>
         </main>
