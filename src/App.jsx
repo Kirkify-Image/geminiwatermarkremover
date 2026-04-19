@@ -1,26 +1,15 @@
 import { startTransition, useEffect, useId, useMemo, useRef, useState } from 'react'
 import { createWatermarkEngine, removeWatermarkFromImage } from '@pilio/gemini-watermark-remover/browser'
 
-/* ===== SEO DATA ===== */
-
 const seoProseBlocks = [
   `If you are searching for a reliable <strong>gemini watermark remover</strong>, you have landed in the right place. This free tool runs entirely inside your browser, so every pixel of your image stays on your device. No sign-up wall, no upload queue, no subscription. Just drop your file and the <strong>gemini watermark remover</strong> starts working instantly.`,
-
   `The demand to strip the watermark from your Gemini image has grown steadily alongside Google Gemini's adoption as an AI image tool. Designers, marketers, and researchers routinely export visuals from Gemini and then need a clean version for their decks, websites, and reports. A dedicated <strong>gemini watermark remover</strong> is the fastest way to reach that goal without sending files to a remote server you don't control.`,
-
   `Understanding why a specialized tool outperforms a generic eraser starts with the watermark itself. The Gemini overlay is composited onto the image at a known opacity using an alpha blend operation. Reverse Alpha Blending — the core algorithm in this <strong>gemini watermark remover</strong> — inverts that compositing step mathematically. Instead of guessing what lies beneath the mark, it solves the blend equation directly and recovers the original pixel values with high fidelity. This is why results from a true <strong>gemini watermark remover</strong> look sharper and more natural than outputs from a general-purpose AI fill tool.`,
-
   `When you clean your Gemini image using this browser-based engine, the entire processing pipeline stays inside a Web Worker on your local machine. The server never sees your image. That commitment to privacy is why so many users choose this <strong>gemini watermark remover</strong> for client work, unreleased product screenshots, and other sensitive visuals.`,
-
   `Client-side processing also makes this tool faster than server-dependent alternatives for most modern devices. The browser decodes the image, runs the detection pass, applies Reverse Alpha Blending through a canvas pipeline, and returns a downloadable PNG — all without a round-trip to the cloud. For a standard Gemini export, the whole job typically completes in under two seconds on a mid-range laptop.`,
-
-
   `The method behind this tool matters just as much as the outcome. This <strong>gemini watermark remover</strong> is built on an open-source engine, meaning the restoration logic is publicly inspectable. That transparency is rare. Most tools that claim to remove the Gemini overlay are opaque black boxes. Here, anyone can read the code, understand the algorithm, and verify that no data leaves the device.`,
-
   `For users who want to know how to remove the Gemini watermark cleanly: start with the original Gemini export whenever possible. Recompressed screenshots or cropped derivatives lose the alpha data the algorithm needs, which limits how precisely the tool can strip the watermark from your Gemini image. Original exports give the engine the best raw material to work with.`,
-
   `This <strong>gemini watermark remover</strong> produces a full-resolution output in PNG format, preserving every pixel outside the watermark region exactly as it was in the original. The repaired zone uses the Reverse Alpha Blending result rather than AI inpainting, which means there is no hallucinated texture or smeared edge in areas adjacent to the mark. If you compare the before and after using the slider on this page, the boundary between cleaned and untouched regions should appear seamless on well-formed original exports.`,
-
   `In summary: a purpose-built <strong>gemini watermark remover</strong> is meaningfully different from a generic editor. It is designed around the specific overlay Gemini produces, processes files locally for privacy, uses a mathematically grounded restoration method, and delivers a clean download without fees or forced accounts. If your goal is to strip the watermark from your Gemini image accurately and keep your files private, this is the tool to use.`,
 ]
 
@@ -79,41 +68,49 @@ const faqItems = [
 const features = [
   {
     title: 'Reverse Alpha Blending',
-    copy: 'This gemini watermark remover inverts the compositing math to reconstruct original pixels rather than painting over the mark with a generated guess.',
+    copy: 'Built for Gemini exports, the engine restores the marked pixels mathematically instead of painting over them with a generated guess.',
   },
   {
     title: 'Local Browser Execution',
-    copy: 'Every remove gemini watermark job runs in a Web Worker on your device. Zero uploads, zero server logs — privacy by design.',
+    copy: 'Every cleanup job runs in a Web Worker on your device. No uploads, no server logs, and no privacy tradeoff.',
   },
   {
     title: 'Free & Open Source',
-    copy: 'This tool is completely free with no limits. The engine is open-source so you can inspect every step of the process.',
+    copy: 'Use the tool without limits, paywalls, or signups. The engine is inspectable, not a black box.',
   },
   {
-    title: 'Purpose-Built Algorithm',
-    copy: 'Unlike generic editors, this gemini logo remover is designed specifically for the Gemini overlay pattern, so remove gemini logo results are sharper and more accurate.',
+    title: 'Purpose-Built Workflow',
+    copy: 'The page is optimized for a single job: drop a Gemini export, preview the cleanup, and download a clean PNG quickly.',
   },
 ]
 
 const steps = [
   {
     num: '1',
-    title: 'Drop or select your image',
-    copy: 'Upload the original Gemini export (PNG, JPG, or WebP). To remove Gemini watermark from image files cleanly, always use the original export rather than a screenshot.',
+    title: 'Upload the original export',
+    copy: 'Use the PNG, JPG, or WebP file downloaded directly from Gemini for the cleanest reconstruction.',
   },
   {
     num: '2',
-    title: 'Browser processes locally',
-    copy: 'The gemini watermark remover online engine applies Reverse Alpha Blending entirely in your browser. No upload required — your file stays private.',
+    title: 'Process locally in your browser',
+    copy: 'Reverse Alpha Blending runs on-device, so your image never has to leave the browser.',
   },
   {
     num: '3',
-    title: 'Preview and download',
-    copy: 'Use the before/after slider to check the repair, then download the cleaned PNG. The gemini watermark remove is complete — no account needed.',
+    title: 'Compare and download',
+    copy: 'Inspect the before/after slider, then save the cleaned PNG when the result looks right.',
   },
 ]
 
-/* ===== UTILS ===== */
+const trustSignals = ['Runs locally', 'No signup', 'Sharper than AI fill']
+
+const comparisonRows = [
+  ['Gemini-specific cleanup', 'Yes', 'Usually no'],
+  ['100% local browser processing', 'Yes', 'Often no'],
+  ['Reverse Alpha Blending', 'Yes', 'Rarely'],
+  ['Remove Gemini logo pattern', 'Yes', 'Not specifically'],
+  ['Free with no limits', 'Yes', 'Often paywalled'],
+]
 
 const EMPTY_DIMENSIONS = { width: 1200, height: 900 }
 let enginePromise
@@ -144,7 +141,10 @@ function canvasToBlob(canvas, type = 'image/png', quality = 0.96) {
   if (typeof canvas?.toBlob === 'function') {
     return new Promise((resolve, reject) => {
       canvas.toBlob((blob) => {
-        if (blob) { resolve(blob); return }
+        if (blob) {
+          resolve(blob)
+          return
+        }
         reject(new Error('Failed to export the processed image.'))
       }, type, quality)
     })
@@ -156,8 +156,6 @@ function getEngine() {
   if (!enginePromise) enginePromise = createWatermarkEngine()
   return enginePromise
 }
-
-/* ===== COMPONENT ===== */
 
 export default function App() {
   const fileInputId = useId()
@@ -173,7 +171,7 @@ export default function App() {
   const [dragActive, setDragActive] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
   const [status, setStatus] = useState({
-    text: 'Drop a Gemini image to start. Processing runs locally in your browser.',
+    text: 'Drop a Gemini export to start. Processing stays local in your browser.',
     state: 'idle',
   })
   const [processState, setProcessState] = useState('Waiting')
@@ -194,10 +192,15 @@ export default function App() {
     }
   }, [afterUrl, beforeUrl])
 
-  function updateStatus(text, state = 'idle') { setStatus({ text, state }) }
+  function updateStatus(text, state = 'idle') {
+    setStatus({ text, state })
+  }
 
   function resetResult() {
-    setAfterUrl((cur) => { if (cur) URL.revokeObjectURL(cur); return '' })
+    setAfterUrl((cur) => {
+      if (cur) URL.revokeObjectURL(cur)
+      return ''
+    })
   }
 
   function clearSelection() {
@@ -205,9 +208,13 @@ export default function App() {
     setSelectedFile(null)
     setDimensions(EMPTY_DIMENSIONS)
     setProcessState('Waiting')
-    updateStatus('Drop a Gemini image to start. Processing runs locally in your browser.')
-    setBeforeUrl((cur) => { if (cur) URL.revokeObjectURL(cur); return '' })
+    updateStatus('Drop a Gemini export to start. Processing stays local in your browser.')
+    setBeforeUrl((cur) => {
+      if (cur) URL.revokeObjectURL(cur)
+      return ''
+    })
     resetResult()
+    if (inputRef.current) inputRef.current.value = ''
   }
 
   async function processFile(file) {
@@ -216,32 +223,51 @@ export default function App() {
     processJobRef.current = jobId
     setIsProcessing(true)
     setProcessState('Processing')
-    updateStatus('Processing locally… usually done in a moment.', 'working')
+    updateStatus('Processing locally. This usually finishes in a moment.', 'working')
 
     try {
       const engine = await getEngine()
       const { image, objectUrl } = await createImageFromFile(file)
-      if (processJobRef.current !== jobId) { URL.revokeObjectURL(objectUrl); return }
+      if (processJobRef.current !== jobId) {
+        URL.revokeObjectURL(objectUrl)
+        return
+      }
 
-      setBeforeUrl((cur) => { if (cur) URL.revokeObjectURL(cur); return objectUrl })
-      setDimensions({ width: image.naturalWidth || EMPTY_DIMENSIONS.width, height: image.naturalHeight || EMPTY_DIMENSIONS.height })
+      setBeforeUrl((cur) => {
+        if (cur) URL.revokeObjectURL(cur)
+        return objectUrl
+      })
+      setDimensions({
+        width: image.naturalWidth || EMPTY_DIMENSIONS.width,
+        height: image.naturalHeight || EMPTY_DIMENSIONS.height,
+      })
 
-      const { canvas, meta } = await removeWatermarkFromImage(image, { engine, adaptiveMode: 'auto', maxPasses: 4 })
+      const { canvas, meta } = await removeWatermarkFromImage(image, {
+        engine,
+        adaptiveMode: 'auto',
+        maxPasses: 4,
+      })
       if (processJobRef.current !== jobId) return
 
       const blob = await canvasToBlob(canvas)
       const nextUrl = URL.createObjectURL(blob)
-      startTransition(() => { setAfterUrl((cur) => { if (cur) URL.revokeObjectURL(cur); return nextUrl }) })
+      startTransition(() => {
+        setAfterUrl((cur) => {
+          if (cur) URL.revokeObjectURL(cur)
+          return nextUrl
+        })
+      })
       setDimensions({ width: canvas.width || image.naturalWidth, height: canvas.height || image.naturalHeight })
-      previewRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+      previewRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
 
       if (meta?.applied) {
         setProcessState('Completed')
-        updateStatus('Done. Compare before/after and download your clean image.', 'success')
+        updateStatus('Done. Compare the result and download the clean PNG.', 'success')
         return
       }
+
       setProcessState('No Change')
-      updateStatus('No Gemini watermark pattern confirmed. Try an original Gemini export.', 'warning')
+      updateStatus('No Gemini watermark pattern was confirmed. Try the original Gemini export.', 'warning')
     } catch (error) {
       if (processJobRef.current !== jobId) return
       console.error(error)
@@ -253,13 +279,19 @@ export default function App() {
   }
 
   function applySelectedFile(file) {
-    if (!file) { clearSelection(); return }
-    if (!file.type.startsWith('image/')) { updateStatus('Select a PNG, JPG, or WebP image file.', 'warning'); return }
+    if (!file) {
+      clearSelection()
+      return
+    }
+    if (!file.type.startsWith('image/')) {
+      updateStatus('Select a PNG, JPG, or WebP image file.', 'warning')
+      return
+    }
+
     setSelectedFile(file)
-    updateStatus('Image loaded. Starting local cleanup…', 'working')
-    setBeforeUrl((cur) => { if (cur) URL.revokeObjectURL(cur); return URL.createObjectURL(file) })
     resetResult()
     setProcessState('Queued')
+    updateStatus('Image loaded. Starting local cleanup…', 'working')
     void processFile(file)
   }
 
@@ -285,7 +317,6 @@ export default function App() {
       <a className="skip-link" href="#main-content">Skip to main content</a>
 
       <div className="page-wrap">
-        {/* TOPBAR */}
         <header>
           <nav className="topbar" aria-label="Primary">
             <a className="brand" href="#top">
@@ -293,266 +324,258 @@ export default function App() {
               Gemini Watermark Remover
             </a>
             <div className="top-links">
-              <a href="#how-to-remove">How to Remove</a>
+              <a href="#how-to-remove">How it works</a>
               <a href="#faq">FAQ</a>
             </div>
           </nav>
         </header>
 
         <main id="main-content">
-          {/* HERO — MINIMAL, MAX 2 LINES */}
-          <section className="hero-minimal" aria-labelledby="hero-h1">
-            <div className="hero-badges">
-              <span className="badge badge-green">✓ Free Forever</span>
-              <span className="badge badge-blue">⚡ Instant Processing</span>
-              <span className="badge">🔒 100% Local — No Upload</span>
-            </div>
-            <h1 id="hero-h1">Gemini Watermark Remover — Free, Instant, Private</h1>
-            <p className="sub">Remove Gemini watermark from image files locally in your browser. No signup, no cloud, no limits.</p>
-          </section>
+          <input
+            id={fileInputId}
+            ref={inputRef}
+            type="file"
+            accept="image/*"
+            className="sr-only"
+            onChange={handleFileChange}
+          />
 
-          {/* TOOL CARD — ABOVE THE FOLD */}
-          <section aria-label="Gemini watermark remover tool">
-            <input
-              id={fileInputId}
-              ref={inputRef}
-              type="file"
-              accept="image/*"
-              className="sr-only"
-              onChange={handleFileChange}
-            />
+          <section className="hero-shell" aria-labelledby="hero-h1">
+            <div className="hero-panel hero-panel-copy">
+              <div className="hero-copy">
+                <span className="eyebrow">Free local Gemini cleanup</span>
+                <h1 id="hero-h1">Remove Gemini Watermarks In Seconds</h1>
+                <p className="hero-sub">
+                  Clean Gemini exports directly in your browser. No signup, no cloud upload,
+                  and no generic AI fill standing between you and a usable image.
+                </p>
+              </div>
 
-            <div className="tool-card">
-              <div className="tool-inner">
-                {/* LEFT — UPLOAD */}
-                <div className="tool-left">
-                  <div
-                    className={`dropzone${dragActive ? ' is-active' : ''}`}
-                    role="button"
-                    tabIndex={0}
-                    aria-label="Drop an image file or click to browse"
-                    onClick={() => inputRef.current?.click()}
-                    onKeyDown={(e) => e.key === 'Enter' || e.key === ' ' ? inputRef.current?.click() : undefined}
-                    onDragOver={(e) => { e.preventDefault(); setDragActive(true) }}
-                    onDragLeave={() => setDragActive(false)}
-                    onDrop={handleDrop}
-                  >
-                    <div className="dropzone-icon" aria-hidden="true">🖼️</div>
-                    <span className="dropzone-title">Drop Gemini image here</span>
-                    <span className="dropzone-sub">or click to browse</span>
-                    {hasSelection && (
-                      <span className="drop-caption">{selectedFile?.name}</span>
-                    )}
-                  </div>
+              <div className="hero-signals" aria-label="Trust signals">
+                {trustSignals.map((signal) => (
+                  <span key={signal} className="signal-pill">{signal}</span>
+                ))}
+              </div>
 
-                  <div className="tool-buttons">
-                    <button
-                      className="button button-primary button-full"
-                      type="button"
-                      onClick={() => inputRef.current?.click()}
-                    >
-                      Choose Image
-                    </button>
-                    <button
-                      className="button button-secondary button-full"
-                      type="button"
-                      disabled={!hasSelection || isProcessing}
-                      onClick={handleProcess}
-                    >
-                      {isProcessing ? 'Processing…' : 'Reprocess'}
-                    </button>
-                    {hasSelection && (
-                      <button
-                        className="button button-secondary button-full"
-                        type="button"
-                        onClick={clearSelection}
-                      >
-                        Reset
-                      </button>
-                    )}
-                  </div>
-
-                  <p className="status-message" data-state={status.state} role="status" aria-live="polite">
-                    {status.text}
-                  </p>
-
-                  {hasSelection && (
-                    <dl className="file-meta">
-                      <div><dt>File</dt><dd>{selectedFile?.name || '-'}</dd></div>
-                      <div><dt>Size</dt><dd>{selectedFile ? formatBytes(selectedFile.size) : '-'}</dd></div>
-                      <div><dt>Status</dt><dd>{processState}</dd></div>
-                    </dl>
-                  )}
+              <div className="proof-card">
+                <div>
+                  <span className="proof-label">Why this feels different</span>
+                  <strong>Built for Gemini exports, not generic image cleanup.</strong>
                 </div>
-
-                {/* RIGHT — PREVIEW */}
-                <div className="tool-right" ref={previewRef}>
-                  <div className="preview-toolbar">
-                    <div className="preview-summary">
-                      <span className={`status-pill status-pill-${status.state}`}>{processState}</span>
-                      <div className="preview-copy">
-                        <strong>{selectedFile ? selectedFile.name : 'Before / After Preview'}</strong>
-                        <span>{selectedFile ? `${formatBytes(selectedFile.size)} · local browser processing` : 'Upload a Gemini export to preview the cleaned result.'}</span>
-                      </div>
-                    </div>
-                    {hasResult ? (
-                      <a className="button button-primary" href={afterUrl} download={outputName}>
-                        ↓ Download
-                      </a>
-                    ) : (
-                      <button className="button button-primary" type="button" disabled>
-                        ↓ Download
-                      </button>
-                    )}
-                  </div>
-
-                  <div className={`compare-frame${hasSelection ? '' : ' empty'}`}>
-                    <h2 className="sr-only">Before and After Preview</h2>
-                    <div className="compare-grid">
-                      <div className="compare-pane before-pane">
-                        {beforeUrl && <img src={beforeUrl} alt="Original Gemini image before watermark removal" width={dimensions.width} height={dimensions.height} loading="eager" fetchPriority="high" />}
-                        <span className="pane-label">Before</span>
-                      </div>
-                      <div className="compare-pane after-pane" style={sliderMask}>
-                        {afterUrl && <img src={afterUrl} alt="Gemini image after watermark removed" width={dimensions.width} height={dimensions.height} loading="eager" />}
-                        <span className="pane-label">After</span>
-                      </div>
-                      <div className="compare-divider" style={sliderDivider} aria-hidden="true" />
-                    </div>
-
-                    {isProcessing && (
-                      <div className="compare-overlay" aria-hidden="true">
-                        <span className="status-pill status-pill-working">Local Cleanup</span>
-                        <strong>Removing Gemini watermark…</strong>
-                        <span>Reverse Alpha Blending in progress.</span>
-                      </div>
-                    )}
-
-                    <div className="compare-empty">
-                      <strong>Before / After Preview</strong>
-                      <span>Upload a Gemini export to test the watermark remover locally.</span>
-                    </div>
-                  </div>
-
-                  <label className="slider-wrap" htmlFor="compare-slider">
-                    <span>Drag to compare</span>
-                    <input
-                      id="compare-slider"
-                      type="range"
-                      min="0"
-                      max="100"
-                      value={sliderValue}
-                      onChange={(e) => setSliderValue(Number(e.target.value))}
-                      aria-valuetext={`${sliderValue}% after image revealed`}
-                      disabled={!hasResult}
-                    />
-                  </label>
-                </div>
+                <p>
+                  Reverse Alpha Blending restores the marked area mathematically, so edges stay sharper
+                  than they do with content-aware fill or inpainting.
+                </p>
               </div>
             </div>
+
+            <div className="hero-panel upload-panel" aria-label="Gemini watermark remover tool">
+              <div
+                className={`dropzone${dragActive ? ' is-active' : ''}`}
+                role="button"
+                tabIndex={0}
+                aria-label="Drop an image file or click to browse"
+                onClick={() => inputRef.current?.click()}
+                onKeyDown={(event) => (
+                  event.key === 'Enter' || event.key === ' ' ? inputRef.current?.click() : undefined
+                )}
+                onDragOver={(event) => {
+                  event.preventDefault()
+                  setDragActive(true)
+                }}
+                onDragLeave={() => setDragActive(false)}
+                onDrop={handleDrop}
+              >
+                <div className="dropzone-icon" aria-hidden="true">+</div>
+                <strong className="dropzone-title">Upload Image</strong>
+                <span className="dropzone-sub">Drop PNG, JPG, or WebP exported from Gemini</span>
+                <span className="dropzone-note">Local processing only. No server upload.</span>
+                {hasSelection && <span className="drop-caption">{selectedFile?.name}</span>}
+              </div>
+
+              <div className="tool-buttons">
+                <button
+                  className="button button-primary button-full"
+                  type="button"
+                  onClick={() => inputRef.current?.click()}
+                >
+                  Choose Image
+                </button>
+                <button
+                  className="button button-secondary button-full"
+                  type="button"
+                  disabled={!hasSelection || isProcessing}
+                  onClick={handleProcess}
+                >
+                  {isProcessing ? 'Processing…' : 'Reprocess'}
+                </button>
+                {hasSelection && (
+                  <button
+                    className="button button-tertiary button-full"
+                    type="button"
+                    onClick={clearSelection}
+                  >
+                    Reset
+                  </button>
+                )}
+              </div>
+
+              <p className="status-message" data-state={status.state} role="status" aria-live="polite">
+                {status.text}
+              </p>
+
+              {hasSelection && (
+                <dl className="file-meta">
+                  <div>
+                    <dt>File</dt>
+                    <dd>{selectedFile?.name || '-'}</dd>
+                  </div>
+                  <div>
+                    <dt>Size</dt>
+                    <dd>{selectedFile ? formatBytes(selectedFile.size) : '-'}</dd>
+                  </div>
+                  <div>
+                    <dt>Status</dt>
+                    <dd>{processState}</dd>
+                  </div>
+                </dl>
+              )}
+            </div>
           </section>
 
+          <section className="workspace-section" aria-labelledby="preview-h2" ref={previewRef}>
+            <div className="workspace-header">
+              <div className="workspace-copy">
+                <span className={`status-pill status-pill-${status.state}`}>{processState}</span>
+                <h2 id="preview-h2">Before / After Workspace</h2>
+                <p>
+                  {selectedFile
+                    ? `${formatBytes(selectedFile.size)} · processed locally in your browser`
+                    : 'Upload a Gemini export to preview the cleanup result.'}
+                </p>
+              </div>
+              {hasResult ? (
+                <a className="button button-primary workspace-download" href={afterUrl} download={outputName}>
+                  Download clean PNG
+                </a>
+              ) : (
+                <button className="button button-primary workspace-download" type="button" disabled>
+                  Download clean PNG
+                </button>
+              )}
+            </div>
 
-          {/* HOW TO REMOVE - 6 STEPS */}
-          <section className="content-section" id="how-to-remove" aria-labelledby="steps-h2">
-            <span className="section-label">How to Remove</span>
-            <h2 id="steps-h2">How to Remove Gemini Watermark — Step by Step</h2>
-            <p>
-              Follow these steps to get the cleanest possible result:
-            </p>
-            <ol>
-              <li>Export your image directly from Google Gemini — download the original PNG or WebP file, not a screenshot.</li>
-              <li>Open this Gemini watermark remover in any modern browser on desktop or mobile.</li>
-              <li>Drop the file into the upload area. No account, no upload queue — processing starts immediately.</li>
-              <li>Wait up to two seconds while the Reverse Alpha Blending engine runs locally in your browser.</li>
-              <li>Use the before/after slider to inspect the repaired region at full resolution.</li>
-              <li>Click Download to save the cleaned PNG to your device.</li>
-            </ol>
-            <p>
-              If the tool returns a "No Change" message, the file is likely a recompressed screenshot rather than an original Gemini export. Re-download the image directly from Gemini and try again.
-            </p>
+            <div className={`compare-frame${hasSelection ? '' : ' empty'}`}>
+              <h2 className="sr-only">Before and After Preview</h2>
+              <div className="compare-grid">
+                <div className="compare-pane before-pane">
+                  {beforeUrl && (
+                    <img
+                      src={beforeUrl}
+                      alt="Original Gemini image before watermark removal"
+                      width={dimensions.width}
+                      height={dimensions.height}
+                      loading="eager"
+                      fetchPriority="high"
+                    />
+                  )}
+                  <span className="pane-label">Before</span>
+                </div>
+                <div className="compare-pane after-pane" style={sliderMask}>
+                  {afterUrl && (
+                    <img
+                      src={afterUrl}
+                      alt="Gemini image after watermark removed"
+                      width={dimensions.width}
+                      height={dimensions.height}
+                      loading="eager"
+                    />
+                  )}
+                  <span className="pane-label">After</span>
+                </div>
+                <div className="compare-divider" style={sliderDivider} aria-hidden="true" />
+              </div>
+
+              {isProcessing && (
+                <div className="compare-overlay" aria-hidden="true">
+                  <span className="status-pill status-pill-working">Local Cleanup</span>
+                  <strong>Removing the Gemini watermark…</strong>
+                  <span>Reverse Alpha Blending is in progress.</span>
+                </div>
+              )}
+
+              <div className="compare-empty">
+                <strong>Upload to preview the cleanup</strong>
+                <span>Original Gemini exports give the cleanest result.</span>
+              </div>
+            </div>
+
+            <label className="slider-wrap" htmlFor="compare-slider">
+              <span>Drag to compare</span>
+              <input
+                id="compare-slider"
+                type="range"
+                min="0"
+                max="100"
+                value={sliderValue}
+                onChange={(event) => setSliderValue(Number(event.target.value))}
+                aria-valuetext={`${sliderValue}% after image revealed`}
+                disabled={!hasResult}
+              />
+            </label>
           </section>
 
-          {/* WHY IT WORKS */}
-          <section className="content-section" aria-labelledby="features-h2">
+          <section className="content-section" id="why-it-works" aria-labelledby="features-h2">
             <span className="section-label">Why it works</span>
-            <h2 id="features-h2">Gemini watermark remover vs generic AI cleanup</h2>
+            <h2 id="features-h2">Purpose-built cleanup beats generic AI patching</h2>
+            <p className="section-intro">
+              The tool is tuned for a single pattern: Gemini's export watermark. That is why the workflow is faster,
+              more private, and visibly cleaner than a generic image editor.
+            </p>
+
             <div className="feature-grid">
-              {features.map((f) => (
-                <article key={f.title} className="feature-card">
-                  <h3>{f.title}</h3>
-                  <p>{f.copy}</p>
+              {features.map((feature) => (
+                <article key={feature.title} className="feature-card">
+                  <h3>{feature.title}</h3>
+                  <p>{feature.copy}</p>
                 </article>
               ))}
             </div>
 
-            {/* Comparison table */}
-            <div className="comparison-table" role="table" aria-label="Gemini watermark remover comparison" style={{ marginTop: '32px' }}>
+            <div className="comparison-table" role="table" aria-label="Gemini watermark remover comparison">
               <div className="table-row table-head" role="row">
                 <span role="columnheader">Capability</span>
                 <span role="columnheader">This Tool</span>
                 <span role="columnheader">Generic Editor</span>
               </div>
-              {[
-                ['Gemini-specific cleanup', 'Yes', 'Usually no'],
-                ['100% local browser processing', 'Yes', 'Often no'],
-                ['Reverse Alpha Blending', 'Yes', 'Rarely'],
-                ['Remove Gemini logo pattern', 'Yes', 'Not specifically'],
-                ['Free with no limits', 'Yes', 'Often paywalled'],
-              ].map(([cap, a, b]) => (
-                <div key={cap} className="table-row" role="row">
-                  <span role="cell">{cap}</span>
-                  <span role="cell" style={{ color: 'var(--success)', fontWeight: 600 }}>{a}</span>
-                  <span role="cell">{b}</span>
+              {comparisonRows.map(([capability, tool, generic]) => (
+                <div key={capability} className="table-row" role="row">
+                  <span role="cell">{capability}</span>
+                  <span role="cell" className="table-good">{tool}</span>
+                  <span role="cell">{generic}</span>
                 </div>
               ))}
             </div>
           </section>
 
-          {/* LONG-FORM SEO ARTICLE */}
-          <section className="content-section" id="seo-article" aria-labelledby="seo-h2">
-            <span className="section-label">Deep Dive</span>
-            <h2 id="seo-h2">Why a dedicated Gemini watermark remover beats generic tools</h2>
-
-            <div className="seo-article">
-              <div className="seo-prose">
-                {seoProseBlocks.map((html, i) => (
-                  <p key={i} dangerouslySetInnerHTML={{ __html: html }} />
-                ))}
-
-                <h3>What is Reverse Alpha Blending?</h3>
-                <p>
-                  Standard image compositing uses the formula: <code>C_out = alpha × C_watermark + (1 − alpha) × C_original</code>.
-                  When you use this <strong>gemini watermark remover</strong>, the engine reads the known parameters of the Gemini overlay
-                  — its position, size, opacity, and color — and solves the equation for <code>C_original</code>.
-                  This algebraic reversal is what makes the cleaned result look like the untouched image
-                  rather than an AI's reconstruction of it.
-                </p>
-
-                <h3>Client-side processing explained</h3>
-                <p>
-                  Client-side processing means every instruction runs inside your browser tab. When you use this tool
-                  to clean your Gemini image, the JavaScript engine downloads a small Web Worker bundle (under 200 KB), decodes your image
-                  into a canvas buffer, runs the detection and blending pass, then encodes the result back to PNG — all without touching
-                  a remote server. This architecture is why this tool can honestly claim
-                  zero-upload privacy: there is no network request that carries your pixel data.
-                </p>
-
-                <h3>Best practices for clean results</h3>
-                <p>
-                  To get the best results, always start from the raw Gemini export.
-                  Avoid images that have been screenshotted, cropped, or re-saved at lower quality, because JPEG compression
-                  introduces artifacts that interfere with the blending math. If the output
-                  shows residual marks, try re-exporting the image directly from Gemini at full resolution before running it through
-                  the tool again.
-                </p>
-
-              </div>
-
+          <section className="content-section" id="how-to-remove" aria-labelledby="steps-h2">
+            <span className="section-label">How it works</span>
+            <h2 id="steps-h2">Three steps from upload to clean output</h2>
+            <div className="step-grid">
+              {steps.map((step) => (
+                <article key={step.num} className="step-card">
+                  <span className="step-num">{step.num}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.copy}</p>
+                </article>
+              ))}
             </div>
+            <p className="supporting-note">
+              If the result shows “No Change”, the file is usually a screenshot or a recompressed copy rather than the
+              original Gemini export. Re-download the source image and try again.
+            </p>
           </section>
 
-          {/* FAQ */}
           <section className="content-section" id="faq" aria-labelledby="faq-h2">
             <span className="section-label">FAQ</span>
             <h2 id="faq-h2">Frequently asked questions about Gemini watermark removal</h2>
@@ -566,6 +589,39 @@ export default function App() {
                   <p>{item.answer}</p>
                 </details>
               ))}
+            </div>
+          </section>
+
+          <section className="content-section seo-section" id="seo-article" aria-labelledby="seo-h2">
+            <span className="section-label">Deep Dive</span>
+            <h2 id="seo-h2">Why a dedicated Gemini watermark remover beats generic tools</h2>
+
+            <div className="seo-prose">
+              {seoProseBlocks.map((html, index) => (
+                <p key={index} dangerouslySetInnerHTML={{ __html: html }} />
+              ))}
+
+              <h3>What is Reverse Alpha Blending?</h3>
+              <p>
+                Standard image compositing uses the formula: <code>C_out = alpha × C_watermark + (1 − alpha) × C_original</code>.
+                When you use this <strong>gemini watermark remover</strong>, the engine reads the known parameters of the Gemini
+                overlay — its position, size, opacity, and color — and solves the equation for <code>C_original</code>. That
+                algebraic reversal is what makes the cleaned result look like the untouched image rather than an AI reconstruction.
+              </p>
+
+              <h3>Client-side processing explained</h3>
+              <p>
+                Client-side processing means every instruction runs inside your browser tab. When you use this tool to clean your
+                Gemini image, the JavaScript engine decodes the file into a canvas buffer, runs the detection and blending pass,
+                then exports the result back to PNG — all without sending the image to a remote server.
+              </p>
+
+              <h3>Best practices for clean results</h3>
+              <p>
+                To get the best results, always start from the raw Gemini export. Avoid screenshots, crops, or low-quality
+                re-saves because compression artifacts interfere with the blending math. If the output still shows residual marks,
+                re-export the image from Gemini at full resolution before trying again.
+              </p>
             </div>
           </section>
         </main>
