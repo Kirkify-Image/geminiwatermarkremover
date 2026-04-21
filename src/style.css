@@ -195,6 +195,15 @@ code {
   background: rgba(255, 255, 255, 0.03);
 }
 
+.language-label {
+  padding: 0 10px 0 12px;
+  color: var(--text-soft);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .language-link {
   display: inline-flex;
   align-items: center;
@@ -977,6 +986,10 @@ code {
   .language-switcher {
     width: 100%;
     justify-content: space-between;
+  }
+
+  .language-label {
+    padding-left: 10px;
   }
 
   .language-link {

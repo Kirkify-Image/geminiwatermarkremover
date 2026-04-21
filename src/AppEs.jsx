@@ -335,6 +335,7 @@ export default function AppEs() {
                 <a href="#faq">FAQ</a>
               </div>
               <div className="language-switcher" aria-label="Selector de idioma">
+                <span className="language-label">Idioma</span>
                 {languageLinks.map((item) => (
                   <a
                     key={item.code}
