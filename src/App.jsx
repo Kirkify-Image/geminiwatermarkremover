@@ -628,20 +628,36 @@ export default function App() {
 
         <footer className="site-footer">
           <p>© {new Date().getFullYear()} gemini-watermarkremover.org — Free, local, open-source. No data leaves your device.</p>
-          <a
-            className="site-footer-badge"
-            href="https://showmebest.ai"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Featured on ShowMeBestAI"
-          >
-            <img
-              src="https://showmebest.ai/badge/feature-badge-dark.webp"
-              alt="Featured on ShowMeBestAI"
-              width="220"
-              height="60"
-            />
-          </a>
+          <div className="site-footer-badges">
+            <a
+              className="site-footer-badge"
+              href="https://showmebest.ai"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Featured on ShowMeBestAI"
+            >
+              <img
+                src="https://showmebest.ai/badge/feature-badge-dark.webp"
+                alt="Featured on ShowMeBestAI"
+                width="220"
+                height="60"
+              />
+            </a>
+            <a
+              className="site-footer-badge"
+              href="https://toolfame.com/item/gemini-watermark-remover-gemini-watermarkremoverorg"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Featured on toolfame.com"
+            >
+              <img
+                src="https://toolfame.com/badge-light.svg"
+                alt="Featured on toolfame.com"
+                width="173"
+                height="54"
+              />
+            </a>
+          </div>
         </footer>
       </div>
     </div>
