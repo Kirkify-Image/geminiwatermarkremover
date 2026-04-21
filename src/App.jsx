@@ -657,6 +657,20 @@ export default function App() {
                 height="54"
               />
             </a>
+            <a
+              className="site-footer-badge"
+              href="https://fazier.com/launches/gemini-watermarkremover.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Featured on Fazier"
+            >
+              <img
+                src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=launched&theme=dark"
+                alt="Fazier badge"
+                width="120"
+                height="40"
+              />
+            </a>
           </div>
         </footer>
       </div>
