@@ -135,6 +135,14 @@ code {
   padding: 24px 0 20px;
 }
 
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 .brand {
   display: inline-flex;
   align-items: center;
@@ -175,6 +183,41 @@ code {
 .top-links a:hover {
   color: var(--text);
   background: rgba(255, 255, 255, 0.05);
+}
+
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.language-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.language-link:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.language-link.is-active {
+  color: #17120f;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  box-shadow: 0 12px 28px rgba(255, 107, 61, 0.2);
 }
 
 .hero-shell {
@@ -881,6 +924,11 @@ code {
     align-items: flex-start;
   }
 
+  .topbar-actions {
+    width: 100%;
+    align-items: flex-start;
+  }
+
   .hero-panel,
   .workspace-section,
   .content-section {
@@ -912,6 +960,11 @@ code {
     font-size: clamp(2.5rem, 16vw, 3.6rem);
   }
 
+  .topbar-actions {
+    width: 100%;
+    gap: 10px;
+  }
+
   .top-links {
     width: 100%;
     justify-content: space-between;
@@ -919,6 +972,15 @@ code {
 
   .top-links a {
     padding-inline: 0;
+  }
+
+  .language-switcher {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .language-link {
+    flex: 1 1 0;
   }
 
   .hero-panel,

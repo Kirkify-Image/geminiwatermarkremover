@@ -112,6 +112,12 @@ const comparisonRows = [
   ['Free with no limits', 'Yes', 'Often paywalled'],
 ]
 
+const languageLinks = [
+  { code: 'EN', href: '/', label: 'English' },
+  { code: 'PT', href: '/pt/', label: 'Português' },
+  { code: 'ES', href: '/es/', label: 'Español' },
+]
+
 const EMPTY_DIMENSIONS = { width: 1200, height: 900 }
 let enginePromise
 
@@ -323,9 +329,26 @@ export default function App() {
               <span className="brand-mark" aria-hidden="true">✦</span>
               Gemini Watermark Remover
             </a>
-            <div className="top-links">
-              <a href="#how-to-remove">How it works</a>
-              <a href="#faq">FAQ</a>
+            <div className="topbar-actions">
+              <div className="top-links">
+                <a href="#how-to-remove">How it works</a>
+                <a href="#faq">FAQ</a>
+              </div>
+              <div className="language-switcher" aria-label="Language switcher">
+                {languageLinks.map((item) => (
+                  <a
+                    key={item.code}
+                    href={item.href}
+                    hrefLang={item.code === 'PT' ? 'pt' : item.code === 'ES' ? 'es' : 'en'}
+                    lang={item.code === 'PT' ? 'pt' : item.code === 'ES' ? 'es' : 'en'}
+                    className={`language-link${item.code === 'EN' ? ' is-active' : ''}`}
+                    aria-current={item.code === 'EN' ? 'page' : undefined}
+                    title={item.label}
+                  >
+                    {item.code}
+                  </a>
+                ))}
+              </div>
             </div>
           </nav>
         </header>
